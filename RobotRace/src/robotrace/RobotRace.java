@@ -249,15 +249,15 @@ public class RobotRace extends Base {
         gl.glColor3d(255, 0, 0);
         drawArrow(cubeSize);
         gl.glPopMatrix();
-        // draw arrow y
-        gl.glPushMatrix(); 
-        gl.glColor3d(0, 255, 0);
-        gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
-        drawArrow(cubeSize);
-        gl.glPopMatrix();
         // draw arrow z
         gl.glPushMatrix(); 
         gl.glColor3d(0, 0, 255);
+        gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
+        drawArrow(cubeSize);
+        gl.glPopMatrix();
+        // draw arrow y
+        gl.glPushMatrix(); 
+        gl.glColor3d(0, 255, 0);
         gl.glRotatef(-90, 0.0f, 0.0f, 1.0f);
         drawArrow(cubeSize);
         gl.glPopMatrix();
