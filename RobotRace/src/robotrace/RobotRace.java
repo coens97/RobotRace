@@ -238,19 +238,51 @@ public class RobotRace extends Base {
      * and origin (yellow).
      */
     public void drawAxisFrame() {
+        // draw yellow cube
+        float cubeSize = 0.1f;
         gl.glPushMatrix(); 
             gl.glColor3d(255, 255, 0);
-            glut.glutSolidCube(0.1f);
+            glut.glutSolidCube(cubeSize);
         gl.glPopMatrix();
-        
-        drawArrow();
+        // draw arrow x
+        gl.glPushMatrix(); 
+        gl.glColor3d(255, 0, 0);
+        drawArrow(cubeSize);
+        gl.glPopMatrix();
+        // draw arrow y
+        gl.glPushMatrix(); 
+        gl.glColor3d(0, 255, 0);
+        gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
+        drawArrow(cubeSize);
+        gl.glPopMatrix();
+        // draw arrow z
+        gl.glPushMatrix(); 
+        gl.glColor3d(0, 0, 255);
+        gl.glRotatef(-90, 0.0f, 0.0f, 1.0f);
+        drawArrow(cubeSize);
+        gl.glPopMatrix();
     }
     
     /**
      * Draws a single arrow
      */
-    public void drawArrow() {  
+    public void drawArrow(float cubeSize) {
+        gl.glPushMatrix(); 
+        float coneLength = 0.2f;
+        float lineLength = 1.0f - (cubeSize + coneLength);
+        float lineWith = 0.06f;
         
+        gl.glTranslated(-1 * (cubeSize/2 + lineLength/2), 0, 0);
+        gl.glScaled(lineLength, lineWith, lineWith);
+        
+        glut.glutSolidCube(1.0f);
+        gl.glPopMatrix();
+        
+        gl.glPushMatrix(); 
+        gl.glTranslated(-1 * (cubeSize/2 + lineLength), 0, 0);
+        gl.glRotatef(-90, 0.0f, 1.0f, 0.0f);
+        glut.glutSolidCone(lineWith * 2, coneLength, 10, 4);
+        gl.glPopMatrix();
     }
  
     /**
