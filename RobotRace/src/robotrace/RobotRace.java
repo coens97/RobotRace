@@ -242,7 +242,7 @@ public class RobotRace extends Base {
         float cubeSize = 0.1f;
         gl.glPushMatrix(); 
             gl.glColor3d(255, 255, 0);
-            glut.glutSolidCube(cubeSize);
+            glut.glutSolidSphere(cubeSize,8 , 12);
         gl.glPopMatrix();
         // draw arrow x
         gl.glPushMatrix(); 
