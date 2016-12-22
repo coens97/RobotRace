@@ -43,7 +43,7 @@ class Robot {
     private float armDistance = (bodyWidth + armsRadius) / 2;
     private int armUpperDefaultAngle = -5;
     private float armUpperArmLenght = 0.2f;
-    
+    private float armLowerArmLenght = 0.2f;
 
     /**
      * Constructs the robot with initial parameters.
@@ -122,7 +122,7 @@ class Robot {
     public void drawLeg(GL2 gl, GLU glu, GLUT glut, float tAnim)
     {
         gl.glPushMatrix();
-        //draw knee
+
         gl.glTranslatef(0,0, legsHeight);
         gl.glRotatef(legsUpperDefaultAngle, 1, 0, 0);
         // draw butt 
@@ -164,16 +164,17 @@ class Robot {
     public void drawArm(GL2 gl, GLU glu, GLUT glut, float tAnim)
     {
         gl.glPushMatrix();
-        //draw knee
+
         gl.glTranslatef(0,0, legsHeight + bodyHeight - armsRadius);
         gl.glRotatef(armUpperDefaultAngle, 1, 0, 0);
         // draw butt 
         glut.glutSolidSphere(armsRadius, 8, 12);
         glut.glutSolidCylinder(armsRadius, -armUpperArmLenght, 8, 12);
+        //draw elbow
         gl.glTranslatef(0, 0, -armUpperArmLenght);
+        gl.glRotatef(-2 * armUpperDefaultAngle, 1, 0, 0);
         glut.glutSolidSphere(armsRadius, 8, 12);
-        //draw knee
-        glut.glutSolidSphere(armsRadius, 8, 12);
+        glut.glutSolidCylinder(armsRadius, -armLowerArmLenght, 8, 12);
         
         gl.glPopMatrix();
     }
