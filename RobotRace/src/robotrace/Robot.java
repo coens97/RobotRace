@@ -22,6 +22,7 @@ class Robot {
     private float headHeight = 0.3f;
     private float headNeckHeight = 0.05f;
     private float headNeckWidth = 0.10f;
+    private float headNose = 0.05f;
     
     private float bodyHeight = 0.7f;
     
@@ -68,6 +69,11 @@ class Robot {
         float radius = headHeight - headNeckHeight;
         gl.glTranslatef(0, 0, headNeckHeight + radius);
         glut.glutSolidSphere(radius, 12, 8);
+        //draw nose
+        gl.glTranslatef(0, radius, 0);
+        gl.glRotated(10, 1, 0, 0);
+        gl.glColor3d(0, 255, 255);
+        glut.glutSolidCone(headNose/2, headNose, 10, 8);
         
         gl.glPopMatrix();
     }
