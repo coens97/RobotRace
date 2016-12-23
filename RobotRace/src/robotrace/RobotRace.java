@@ -81,23 +81,23 @@ public class RobotRace extends Base {
         robots = new Robot[4];
         
         // Initialize robot 0
-        robots[0] = new Robot(Material.GOLD
-                
+        robots[0] = new Robot(Material.GOLD,
+               0, 0, 0 
         );
         
         // Initialize robot 1
-        robots[1] = new Robot(Material.SILVER
-              
+        robots[1] = new Robot(Material.SILVER,
+              1, 0, 0
         );
         
         // Initialize robot 2
-        robots[2] = new Robot(Material.WOOD
-              
+        robots[2] = new Robot(Material.WOOD,
+              2, 0, 0
         );
 
         // Initialize robot 3
-        robots[3] = new Robot(Material.ORANGE
-                
+        robots[3] = new Robot(Material.ORANGE,
+              3, 0, 0  
         );
         
         // Initialize the camera
@@ -218,7 +218,9 @@ public class RobotRace extends Base {
         // Draw the (first) robot.
         gl.glUseProgram(robotShader.getProgramID()); 
         
-        robots[0].draw(gl, glu, glut, 0);
+        for (int i = 0; i < robots.length; i++) {
+            robots[i].draw(gl, glu, glut, 0);
+        }
         
         
         // Draw the race track.

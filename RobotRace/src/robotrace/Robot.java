@@ -48,11 +48,11 @@ class Robot {
     /**
      * Constructs the robot with initial parameters.
      */
-    public Robot(Material material
-            
+    public Robot(Material material,
+       int x, int y, int z     
     ) {
         this.material = material;
-
+        this.position = new Vector(x, y, z);
         
     }
 
