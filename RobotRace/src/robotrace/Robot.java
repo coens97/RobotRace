@@ -11,10 +11,11 @@ import static javax.media.opengl.GL2.*;
 class Robot {
     
     /** The position of the robot. */
-    public Vector position = new Vector(1, 0, 0);
+    public Vector position;
     
     /** The direction in which the robot is running. */
-    public Vector direction = new Vector(1, 0, 0);
+    public Vector direction = new Vector(1, 1, 0);
+    private Vector defaultDirection = new Vector(1, 0, 0);
 
     /** The material from which this robot is built. */
     private final Material material;
@@ -62,6 +63,12 @@ class Robot {
     public void draw(GL2 gl, GLU glu, GLUT glut, float tAnim) {
         gl.glPushMatrix();
             gl.glTranslated(-position.x, -position.y, -position.z - robotHeight/2);
+            
+            direction = direction.normalized();
+            Vector up = defaultDirection.cross(direction);
+            gl.glRotated(Math.acos(defaultDirection.dot(direction)) / Math.PI * 180, up.x, up.y, up.z);
+            
+            ShaderPrograms.robotShader.useProgram(gl);
             drawHead(gl, glu, glut, tAnim);
             drawBody(gl, glu, glut, tAnim);
             drawLegs(gl, glu, glut, tAnim);
@@ -69,7 +76,11 @@ class Robot {
         gl.glPopMatrix();
     }
     
-    public void drawHead(GL2 gl, GLU glu, GLUT glut, float tAnim)
+    public void Rotate(GL2 gl, GLU glu, GLUT glut) {
+        
+    }
+    
+    private void drawHead(GL2 gl, GLU glu, GLUT glut, float tAnim)
     {
         gl.glPushMatrix();
         
@@ -91,7 +102,7 @@ class Robot {
         gl.glPopMatrix();
     }
     
-    public void drawBody(GL2 gl, GLU glu, GLUT glut, float tAnim)
+    private void drawBody(GL2 gl, GLU glu, GLUT glut, float tAnim)
     {
         gl.glPushMatrix();
         
@@ -104,7 +115,7 @@ class Robot {
         gl.glPopMatrix();
     }
     
-    public void drawLegs(GL2 gl, GLU glu, GLUT glut, float tAnim)
+    private void drawLegs(GL2 gl, GLU glu, GLUT glut, float tAnim)
     {
         gl.glColor3d(0.5, 0.5, 0.5);
         //draw left leg
@@ -119,7 +130,7 @@ class Robot {
         gl.glPopMatrix();
     }
     
-    public void drawLeg(GL2 gl, GLU glu, GLUT glut, float tAnim)
+    private void drawLeg(GL2 gl, GLU glu, GLUT glut, float tAnim)
     {
         gl.glPushMatrix();
 
@@ -146,7 +157,7 @@ class Robot {
         gl.glPopMatrix();
     }
     
-    public void drawArms(GL2 gl, GLU glu, GLUT glut, float tAnim)
+    private void drawArms(GL2 gl, GLU glu, GLUT glut, float tAnim)
     {
         gl.glColor3d(0, 0.5, 0.5);
         //draw left leg
@@ -161,7 +172,7 @@ class Robot {
         gl.glPopMatrix();
     }
     
-    public void drawArm(GL2 gl, GLU glu, GLUT glut, float tAnim)
+    private void drawArm(GL2 gl, GLU glu, GLUT glut, float tAnim)
     {
         gl.glPushMatrix();
 
