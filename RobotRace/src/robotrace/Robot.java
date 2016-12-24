@@ -36,6 +36,7 @@ class Robot {
     private float legsShoeDepth = 0.3f;
     private float legsKneeHeight = 0.4f;
     private int legsUpperDefaultAngle = 10;
+    private int legsUpperKickAngle = 18;
     private float legsUpperHeight = legsHeight - legsKneeHeight;
     
     private float robotHeight = headHeight + bodyHeight +legsHeight;
@@ -43,6 +44,7 @@ class Robot {
     private float armsRadius = 0.08f;
     private float armDistance = (bodyWidth + armsRadius) / 2;
     private int armUpperDefaultAngle = -5;
+    private int armUpperSwingAngle = 15; 
     private float armUpperArmLenght = 0.2f;
     private float armLowerArmLenght = 0.2f;
 
@@ -61,6 +63,12 @@ class Robot {
      * Draws this robot (as a {@code stickfigure} if specified).
      */
     public void draw(GL2 gl, GLU glu, GLUT glut, float tAnim) {
+        // from gameTime, to [0.0 .. 1.0] then [1.0 .. 0.0] and repeat
+        tAnim = tAnim % 4.0f;
+        tAnim -= 2;
+        tAnim = Math.abs(tAnim);
+        tAnim -= 1;
+        
         gl.glPushMatrix();
             gl.glTranslated(-position.x, -position.y, -position.z - robotHeight/2);
             
@@ -129,7 +137,7 @@ class Robot {
         //draw right leg
         gl.glPushMatrix();
         gl.glTranslatef(legsDistance, 0, 0);
-        drawLeg(gl, glu, glut, tAnim);
+        drawLeg(gl, glu, glut, -tAnim);
         gl.glPopMatrix();
     }
     
@@ -138,7 +146,7 @@ class Robot {
         gl.glPushMatrix();
 
         gl.glTranslatef(0,0, legsHeight);
-        gl.glRotatef(legsUpperDefaultAngle, 1, 0, 0);
+        gl.glRotatef(legsUpperDefaultAngle + legsUpperKickAngle * tAnim, 1, 0, 0);
         // draw butt 
         glut.glutSolidSphere(legsRadius, 8, 12);
         glut.glutSolidCylinder(legsRadius, -legsUpperHeight, 8, 12);
@@ -152,7 +160,7 @@ class Robot {
         glut.glutSolidCylinder(legsRadius, legsKneeHeight, 8, 12);
         glut.glutSolidSphere(legsRadius, 8, 12);
         // draw shoe
-        gl.glRotatef(legsUpperDefaultAngle, 1, 0, 0);
+        gl.glRotatef(legsUpperDefaultAngle - legsUpperKickAngle * tAnim, 1, 0, 0);
         gl.glTranslatef(0, legsShoeDepth/2 - legsRadius, -legsShoeHeight/2);
         gl.glScalef(legsRadius * 2, legsShoeDepth, legsShoeHeight);
         glut.glutSolidCube(1.0f);
@@ -171,7 +179,7 @@ class Robot {
         //draw right leg
         gl.glPushMatrix();
         gl.glTranslatef(armDistance, 0, 0);
-        drawArm(gl, glu, glut, tAnim);
+        drawArm(gl, glu, glut, -tAnim);
         gl.glPopMatrix();
     }
     
@@ -180,7 +188,7 @@ class Robot {
         gl.glPushMatrix();
 
         gl.glTranslatef(0,0, legsHeight + bodyHeight - armsRadius);
-        gl.glRotatef(armUpperDefaultAngle, 1, 0, 0);
+        gl.glRotatef(armUpperDefaultAngle + armUpperSwingAngle * tAnim, 1, 0, 0);
         // draw butt 
         glut.glutSolidSphere(armsRadius, 8, 12);
         glut.glutSolidCylinder(armsRadius, -armUpperArmLenght, 8, 12);
