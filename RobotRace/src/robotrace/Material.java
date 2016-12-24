@@ -23,9 +23,9 @@ public enum Material {
      */
     SILVER (
             
-        new float[] {0, 0, 0, 1},
-        new float[] {0, 0, 0, 1},
-        0
+        new float[] {0.7f, 0.7f, 0.7f, 1},
+        new float[] {1, 1, 1, 1},
+        8
 
     ),
 
@@ -35,9 +35,9 @@ public enum Material {
      */
     ORANGE (
             
-        new float[] {0, 0, 0, 1},
-        new float[] {0, 0, 0, 1},
-        0
+        new float[] {1, 0.64705882352f, 0, 1},
+        new float[] {1.0f, 0.8431372549f, 0, 1},
+        2
 
     ),
 
@@ -47,8 +47,8 @@ public enum Material {
      */
     WOOD (
 
-        new float[] {0, 0, 0, 1},
-        new float[] {0, 0, 0, 1},
+        new float[] {0.65098039215f, 0.32156862745f, 0, 1},
+        new float[] {0.65098039215f, 0.32156862745f, 0, 1},
         0
 
     );
