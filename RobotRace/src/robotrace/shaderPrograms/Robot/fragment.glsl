@@ -3,7 +3,7 @@ varying vec3 N, P;
 
 vec4 shading(vec3 P, vec3 N, gl_MaterialParameters mat) {
  vec4 result = vec4(0.0, 0.0, 0.0, 1.0); // opaque black
- for(int i=0; i<3;i++){ // loop through the lights
+ for(int i=0; i<1;i++){ // loop through the lights
 
   gl_LightSourceParameters light = gl_LightSource[i];
 
@@ -13,8 +13,8 @@ vec4 shading(vec3 P, vec3 N, gl_MaterialParameters mat) {
   //}
 
  
-
-  vec3 L = normalize(light.position.xyz - P); // vector towards light source
+  //vec4 LP =  light.position;
+  vec3 L = normalize(vec3(0.0) - P); // vector towards light source
   float cosTheta = max(0.0, dot(N, L)); // angle between the normal and the light source
   //if (diffuse) {
    result += mat.diffuse * light.diffuse * cosTheta; // sum the color of diffuse times the intensity

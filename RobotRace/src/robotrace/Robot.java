@@ -67,6 +67,9 @@ class Robot {
             direction = direction.normalized();
             Vector up = defaultDirection.cross(direction);
             gl.glRotated(Math.acos(defaultDirection.dot(direction)) / Math.PI * 180, up.x, up.y, up.z);
+            gl.glMaterialfv(GL_FRONT, GL_DIFFUSE, Material.GOLD.diffuse, 0);
+            gl.glMaterialfv(GL_FRONT, GL_SPECULAR, Material.GOLD.specular, 0);
+            gl.glMaterialf(GL_FRONT, GL_SHININESS, Material.GOLD.shininess);
             
             ShaderPrograms.robotShader.useProgram(gl);
             drawHead(gl, glu, glut, tAnim);

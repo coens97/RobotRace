@@ -101,6 +101,15 @@ public class ShaderProgram {
         }
     }
     
+    public void setUniform(GL2 gl, String uniformName, float[] value) {
+        int uniform = gl.glGetUniformLocationARB(programID, uniformName);
+        if (uniform == -1) {
+            System.err.format("missing uniform \"%s\"\n", uniformName);
+        } else {
+            gl.glUniform4f(uniform, value[0], value[1], value[2], value[3]);
+        }
+    }
+    
     private int createShader(GL2 gl2, String shader, int shaderType) throws IOException {
         try {
             if (shader==null) return -1;
