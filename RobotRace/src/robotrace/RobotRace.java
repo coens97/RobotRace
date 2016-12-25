@@ -220,6 +220,7 @@ public class RobotRace extends Base {
         
         for (int i = 0; i < robots.length; i++) {
             robots[i].position = this.raceTracks[gs.trackNr].getLanePoint(i, this.gs.tAnim/40).subtract(Vector.Z);
+            robots[i].direction = Vector.Z.cross(this.raceTracks[gs.trackNr].getLaneTangent(i, this.gs.tAnim/40));
             robots[i].draw(gl, glu, glut, this.gs.tAnim);
         }
 
