@@ -31,8 +31,9 @@ abstract class RaceTrack {
         gl.glBegin(GL_TRIANGLE_STRIP);	
         for(float i = 0; i <= 1.0f; i+= stepSize) {
             Vector vector = getLanePoint(0, i);
-            Vector vector1 = getLanePoint(0, i).add(new Vector(-0.5 * laneWidth, 0, 0));
-            Vector vector2 = getLanePoint(0, i).add(new Vector( 0.5 * laneWidth, 0, 0));
+            Vector tangent = getLaneTangent(0, i);
+            Vector vector1 = getLanePoint(0, i).add(tangent.scale(laneWidth));
+            Vector vector2 = getLanePoint(0, i).add(tangent.scale(-laneWidth));
             gl.glVertex3d( vector1.x, vector1.y, vector1.z ); 
             gl.glVertex3d( vector2.x, vector2.y, vector2.z ); 
             
@@ -55,7 +56,7 @@ abstract class RaceTrack {
      */
     public Vector getLaneTangent(int lane, double t){
         
-        return Vector.O;
+        return getTangent(t);
 
     }
     
