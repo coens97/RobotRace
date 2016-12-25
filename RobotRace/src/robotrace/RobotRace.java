@@ -70,9 +70,7 @@ public class RobotRace extends Base {
     
     /** Instance of the terrain. */
     private final Terrain terrain;
-    private long last_time = System.nanoTime();
     private double speed = 0.0035;
-    private double gameTime = 0;
         
     /**
      * Constructs this robot race by initializing robots,
@@ -186,23 +184,11 @@ public class RobotRace extends Base {
                       camera.up.x(),     camera.up.y(),     camera.up.z());
     }
     
-    private int calculateDeltaTime()
-    {
-        long time = System.nanoTime();
-        int delta_time = (int) ((time - last_time) / 1000000);
-        last_time = time;
-        return delta_time;
-    }
-    
     /**
      * Draws the entire scene.
      */
     @Override
     public void drawScene() {
-        int dt = calculateDeltaTime();
-        gameTime += dt * speed;
-        
-        System.out.print("FPS:" + Math.round(dt) + "\r\n");
         gl.glUseProgram(defaultShader.getProgramID());
         reportError("program");
         
@@ -233,7 +219,7 @@ public class RobotRace extends Base {
         gl.glUseProgram(robotShader.getProgramID()); 
         
         for (int i = 0; i < robots.length; i++) {
-            robots[i].draw(gl, glu, glut, (float)(gameTime));
+            robots[i].draw(gl, glu, glut, this.gs.tAnim);
         }
         
         

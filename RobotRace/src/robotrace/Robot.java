@@ -20,6 +20,7 @@ class Robot {
     /** The material from which this robot is built. */
     private final Material material;
     
+    private float walkingSpeed = 6.0f;
     private float headHeight = 0.3f;
     private float headNeckHeight = 0.05f;
     private float headNeckWidth = 0.10f;
@@ -64,6 +65,7 @@ class Robot {
      */
     public void draw(GL2 gl, GLU glu, GLUT glut, float tAnim) {
         // from gameTime, to [0.0 .. 1.0] then [1.0 .. 0.0] and repeat
+        tAnim *= walkingSpeed;
         tAnim = tAnim % 4.0f;
         tAnim -= 2;
         tAnim = Math.abs(tAnim);
