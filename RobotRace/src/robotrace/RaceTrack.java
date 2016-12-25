@@ -29,7 +29,7 @@ abstract class RaceTrack {
     public void draw(GL2 gl, GLU glu, GLUT glut) {
         //Vector lastVector1, lastVector2;
         gl.glPushMatrix();
-        for(int lane = 0; lane < 1; lane++)
+        for(int lane = 0; lane < 4; lane++)
         {
             //gl.glBegin(GL_LINE_STRIP);	
             gl.glBegin(GL_TRIANGLE_STRIP);	
@@ -55,7 +55,8 @@ abstract class RaceTrack {
      */
     public Vector getLanePoint(int lane, double t){
         Vector tangent = getLaneTangent(lane, t);
-        return getPoint(t).add(tangent.scale(laneWidth * lane));
+        Vector normal = tangent.cross(Vector.Z).normalized();
+        return getPoint(t).add(normal.scale(laneWidth * lane));
 
     }
     
