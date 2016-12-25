@@ -38,7 +38,7 @@ class Robot {
     private float legsKneeHeight = 0.4f;
     private int legsUpperDefaultAngle = 10;
     private int legsUpperKickAngle = 18;
-    private float legsUpperHeight = legsHeight - legsKneeHeight;
+    private float legsUpperHeight = legsHeight - legsKneeHeight - legsShoeHeight;
     
     private float robotHeight = headHeight + bodyHeight +legsHeight;
     
@@ -72,7 +72,7 @@ class Robot {
         tAnim -= 1;
         
         gl.glPushMatrix();
-            gl.glTranslated(-position.x, -position.y, -position.z - robotHeight/2);
+            gl.glTranslated(-position.x, -position.y, -position.z + robotHeight/2);
             
             direction = direction.normalized();
             Vector up = defaultDirection.cross(direction);
@@ -158,8 +158,8 @@ class Robot {
         glut.glutSolidSphere(legsRadius, 8, 12);
         //draw under leg
         gl.glRotatef(-2 * legsUpperDefaultAngle, 1, 0, 0);
-        gl.glTranslatef(0, 0, -legsKneeHeight);
-        glut.glutSolidCylinder(legsRadius, legsKneeHeight, 8, 12);
+        gl.glTranslatef(0, 0, -legsKneeHeight +legsShoeHeight);
+        glut.glutSolidCylinder(legsRadius, legsKneeHeight - legsShoeHeight, 8, 12);
         glut.glutSolidSphere(legsRadius, 8, 12);
         // draw shoe
         gl.glRotatef(legsUpperDefaultAngle - legsUpperKickAngle * tAnim, 1, 0, 0);

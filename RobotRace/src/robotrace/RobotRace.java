@@ -219,10 +219,10 @@ public class RobotRace extends Base {
         gl.glUseProgram(robotShader.getProgramID()); 
         
         for (int i = 0; i < robots.length; i++) {
+            robots[i].position = this.raceTracks[gs.trackNr].getLanePoint(i, this.gs.tAnim/40).subtract(Vector.Z);
             robots[i].draw(gl, glu, glut, this.gs.tAnim);
         }
-        
-        
+
         // Draw the race track.
         gl.glUseProgram(trackShader.getProgramID());
         raceTracks[gs.trackNr].draw(gl, glu, glut);
@@ -288,47 +288,6 @@ public class RobotRace extends Base {
         gl.glRotatef(-90, 0.0f, 1.0f, 0.0f);
         glut.glutSolidCone(lineWith * 2, coneLength, 10, 4);
         gl.glPopMatrix();
-    }
- 
-    /**
-     * Drawing hierarchy example.
-     * 
-     * This method draws an "arm" which can be animated using the sliders in the
-     * RobotRace interface. The A and B sliders rotate the different joints of
-     * the arm, while the C, D and E sliders set the R, G and B components of
-     * the color of the arm respectively. 
-     * 
-     * The way that the "arm" is drawn (by calling {@link #drawSecond()}, which 
-     * in turn calls {@link #drawThird()} imposes the following hierarchy:
-     * 
-     * {@link #drawHierarchy()} -> {@link #drawSecond()} -> {@link #drawThird()}
-     */
-    private void drawHierarchy() {
-        gl.glColor3d(gs.sliderC, gs.sliderD, gs.sliderE);
-        gl.glPushMatrix(); 
-            gl.glScaled(2, 1, 1);
-            glut.glutSolidCube(1);
-            gl.glScaled(0.5, 1, 1);
-            gl.glTranslated(1, 0, 0);
-            gl.glRotated(gs.sliderA * -90.0, 0, 1, 0);
-            drawSecond();
-        gl.glPopMatrix();
-    }
-    
-    private void drawSecond() {
-        gl.glTranslated(1, 0, 0);
-        gl.glScaled(2, 1, 1);
-        glut.glutSolidCube(1);
-        gl.glScaled(0.5, 1, 1);
-        gl.glTranslated(1, 0, 0);
-        gl.glRotated(gs.sliderB * -90.0, 0, 1, 0);
-        drawThird();
-    }
-    
-    private void drawThird() {
-        gl.glTranslated(1, 0, 0);
-        gl.glScaled(2, 1, 1);
-        glut.glutSolidCube(1);
     }
     
     
