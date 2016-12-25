@@ -28,17 +28,20 @@ abstract class RaceTrack {
      */
     public void draw(GL2 gl, GLU glu, GLUT glut) {
         //Vector lastVector1, lastVector2;
+        for(int lane = 0; lane < 4; lane++)
+        {
         gl.glBegin(GL_TRIANGLE_STRIP);	
         for(float i = 0; i <= 1.0f; i+= stepSize) {
-            Vector vector = getLanePoint(0, i);
-            Vector tangent = getLaneTangent(0, i);
-            Vector vector1 = getLanePoint(0, i).add(tangent.scale(laneWidth));
-            Vector vector2 = getLanePoint(0, i).add(tangent.scale(-laneWidth));
+            Vector vector = getLanePoint(lane, i);
+            Vector tangent = getLaneTangent(lane, i);
+            Vector vector1 = getLanePoint(lane, i).add(tangent.scale(laneWidth));
+            Vector vector2 = getLanePoint(lane, i).add(tangent.scale(-laneWidth));
             gl.glVertex3d( vector1.x, vector1.y, vector1.z ); 
             gl.glVertex3d( vector2.x, vector2.y, vector2.z ); 
             
         }
         gl.glEnd();
+        }
     }
     
     /**
@@ -46,7 +49,8 @@ abstract class RaceTrack {
      * Use this method to find the position of a robot on the track.
      */
     public Vector getLanePoint(int lane, double t){
-        return getPoint(t);
+        Vector tangent = getLaneTangent(lane, t);
+        return getPoint(t).add(tangent.scale(laneWidth * lane));
 
     }
     
