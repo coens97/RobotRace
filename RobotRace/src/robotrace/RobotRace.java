@@ -257,6 +257,8 @@ public class RobotRace extends Base {
         // draw yellow cube
         float cubeSize = 0.1f;
         gl.glPushMatrix(); 
+        gl.glTranslated(this.camera.center.x, this.camera.center.y, this.camera.center.z);
+        gl.glPushMatrix(); 
             gl.glColor3d(255, 255, 0);
             glut.glutSolidSphere(cubeSize,8 , 12);
         gl.glPopMatrix();
@@ -276,6 +278,7 @@ public class RobotRace extends Base {
         gl.glColor3d(0, 255, 0);
         gl.glRotatef(-90, 0.0f, 0.0f, 1.0f);
         drawArrow(cubeSize);
+        gl.glPopMatrix();
         gl.glPopMatrix();
     }
     
