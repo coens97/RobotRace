@@ -12,7 +12,7 @@ abstract class RaceTrack {
     
     /** The width of one lane. The total width of the track is 4 * laneWidth. */
     private final static float laneWidth = 1.22f;
-    private final static float stepSize = 0.002f;
+    private final static float stepSize = 0.0125f;
     
     
     /**
@@ -28,20 +28,25 @@ abstract class RaceTrack {
      */
     public void draw(GL2 gl, GLU glu, GLUT glut) {
         //Vector lastVector1, lastVector2;
-        for(int lane = 0; lane < 4; lane++)
+        gl.glPushMatrix();
+        for(int lane = 0; lane < 1; lane++)
         {
-        gl.glBegin(GL_TRIANGLE_STRIP);	
-        for(float i = 0; i <= 1.0f; i+= stepSize) {
-            Vector vector = getLanePoint(lane, i);
-            Vector tangent = getLaneTangent(lane, i);
-            Vector vector1 = getLanePoint(lane, i).add(tangent.scale(laneWidth));
-            Vector vector2 = getLanePoint(lane, i).add(tangent.scale(-laneWidth));
-            gl.glVertex3d( vector1.x, vector1.y, vector1.z ); 
-            gl.glVertex3d( vector2.x, vector2.y, vector2.z ); 
-            
+            //gl.glBegin(GL_LINE_STRIP);	
+            gl.glBegin(GL_TRIANGLE_STRIP);	
+
+            for(float i = 0; i <= 1.0f; i+= stepSize) {
+                Vector vector = getLanePoint(lane, i);
+                Vector tangent = getLaneTangent(lane, i);
+                Vector normal = tangent.cross(Vector.Z).normalized();
+                Vector vector1 = getLanePoint(lane, i).add(normal.scale(laneWidth));
+                Vector vector2 = getLanePoint(lane, i).add(normal.scale(-laneWidth));
+                gl.glVertex3d( vector2.x, vector2.y, vector2.z ); 
+                gl.glVertex3d( vector1.x, vector1.y, vector1.z ); 
+
+            }
+            gl.glEnd();
         }
-        gl.glEnd();
-        }
+        gl.glPopMatrix();
     }
     
     /**
