@@ -9,14 +9,14 @@ public class ParametricTrack extends RaceTrack {
     @Override
     protected Vector getPoint(double t) {
 
-        return Vector.O;
+        return new Vector(10 * Math.cos(2 * Math.PI * t), 14 * Math.sin(2 * Math.PI * t), 1);//P (t) = (10 cos(2πt), 14 sin(2πt), 1)
 
     }
 
     @Override
     protected Vector getTangent(double t) {
 
-        return Vector.O;
+        return new Vector(-20 * Math.PI * Math.sin(2 * Math.PI * t), 28 * Math.PI * Math.sin(2 * Math.PI * t), 0).normalized();//P (t) = (10 cos(2πt), 14 sin(2πt), 1)
 
     }
     

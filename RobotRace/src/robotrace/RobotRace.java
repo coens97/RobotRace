@@ -233,7 +233,7 @@ public class RobotRace extends Base {
         gl.glUseProgram(robotShader.getProgramID()); 
         
         for (int i = 0; i < robots.length; i++) {
-            //robots[i].draw(gl, glu, glut, (float)(gameTime));
+            robots[i].draw(gl, glu, glut, (float)(gameTime));
         }
         
         
@@ -349,7 +349,7 @@ public class RobotRace extends Base {
      */
     public static void main(String args[]) {
         RobotRace robotRace = new RobotRace();
-        robotRace.FPS = 15; // 15 FPS :)
+        robotRace.FPS = 15; // 15 FPS :).. 15ms
         robotRace.run();
     }
 }
