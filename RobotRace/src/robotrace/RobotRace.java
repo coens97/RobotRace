@@ -219,9 +219,10 @@ public class RobotRace extends Base {
         gl.glUseProgram(robotShader.getProgramID()); 
         
         for (int i = 0; i < robots.length; i++) {
-            robots[i].position = this.raceTracks[gs.trackNr].getLanePoint(i, this.gs.tAnim/40).subtract(Vector.Z);
-            robots[i].direction = Vector.Z.cross(this.raceTracks[gs.trackNr].getLaneTangent(i, this.gs.tAnim/40));
-            robots[i].draw(gl, glu, glut, this.gs.tAnim);
+            float robotAnim = this.gs.tAnim + robots[i].extraDistance;
+            robots[i].position = this.raceTracks[gs.trackNr].getLanePoint(i, robotAnim/40).subtract(Vector.Z);
+            robots[i].direction = Vector.Z.cross(this.raceTracks[gs.trackNr].getLaneTangent(i, robotAnim/40));
+            robots[i].draw(gl, glu, glut, robotAnim);
         }
 
         // Draw the race track.

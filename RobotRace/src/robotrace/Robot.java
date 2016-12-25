@@ -1,6 +1,7 @@
 package robotrace;
 
 import com.jogamp.opengl.util.gl2.GLUT;
+import java.util.Random;
 import javax.media.opengl.GL2;
 import javax.media.opengl.glu.GLU;
 import static javax.media.opengl.GL2.*;
@@ -48,6 +49,9 @@ class Robot {
     private int armUpperSwingAngle = 15; 
     private float armUpperArmLenght = 0.2f;
     private float armLowerArmLenght = 0.2f;
+    private float randomNumber;
+    public float extraDistance = 0;
+    private float sprintSpeed = 0.01f;
 
     /**
      * Constructs the robot with initial parameters.
@@ -57,13 +61,23 @@ class Robot {
     ) {
         this.material = material;
         this.position = new Vector(x, y, z);
-        
+        Random r = new Random();
+        randomNumber = 0.2f + r.nextFloat() * 0.5f;
+    }
+    
+    private void addSprintSpeed(float tAnim)
+    {
+        if (Math.sin(tAnim * randomNumber) > 0.2)
+        {
+            extraDistance += sprintSpeed; // no use of time between frames
+        }
     }
 
     /**
      * Draws this robot (as a {@code stickfigure} if specified).
      */
     public void draw(GL2 gl, GLU glu, GLUT glut, float tAnim) {
+        addSprintSpeed(tAnim);
         // from gameTime, to [0.0 .. 1.0] then [1.0 .. 0.0] and repeat
         tAnim *= walkingSpeed;
         tAnim = tAnim % 4.0f;
