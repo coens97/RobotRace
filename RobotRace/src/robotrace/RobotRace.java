@@ -124,6 +124,11 @@ public class RobotRace extends Base {
                 new Vector(20,20,5),
                 new Vector(15,20,5),
                 new Vector(10,20,5),
+                
+                /*new Vector(10,20,5),
+                new Vector(5,20,5),
+                new Vector(15,20,5),
+                new Vector(10,20,5),*/
             }
        
         );
@@ -242,6 +247,7 @@ public class RobotRace extends Base {
 
         // Draw the race track.
         gl.glUseProgram(trackShader.getProgramID());
+
         raceTracks[gs.trackNr].draw(gl, glu, glut);
         
         // Draw the terrain.

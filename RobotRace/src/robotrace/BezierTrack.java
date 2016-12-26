@@ -29,8 +29,12 @@ public class BezierTrack extends RaceTrack {
 
     @Override
     protected Vector getTangent(double t) {
-        t = t % 1;
-        return getCubicBezierTng(t, controlPoints[0], controlPoints[1], controlPoints[2], controlPoints[3]);
+        t %= 1; // only allow input 0..1
+        int nrFragments = controlPoints.length / 4;
+        int fragment = (int)Math.floor(t * nrFragments)*4;
+        t *= nrFragments;
+        t %= 1;
+        return getCubicBezierTng(t, controlPoints[fragment], controlPoints[fragment + 1], controlPoints[fragment + 2], controlPoints[fragment + 3]);
 
     }
     
@@ -44,13 +48,9 @@ public class BezierTrack extends RaceTrack {
     
     public Vector getCubicBezierTng(double t, Vector P0, Vector P1, Vector P2, Vector P3) {
         double it = 1 - t;
-        return P1.subtract(P0)
-                .scale(3*it*it)
-                .add(
-                        P2.subtract(P1)
-                                .scale(6*it*t))
-                .add(
-                        P3.subtract(P2)
-                                .scale(3*t*t));
+        return P0.scale(-3*it*it)
+                .add(P1.scale(3*(t-1)*(3*t-1)))
+                .add(P2.scale(6*t - 9*t*t))
+                .add(P3.scale(3*t*t)).normalized();
     }
 }
