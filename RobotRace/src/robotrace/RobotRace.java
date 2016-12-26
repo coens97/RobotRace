@@ -120,6 +120,10 @@ public class RobotRace extends Base {
                 new Vector(20,10,5),
                 new Vector(20,15,5),
                 
+                new Vector(20,15,5),
+                new Vector(20,20,5),
+                new Vector(15,20,5),
+                new Vector(10,20,5),
             }
        
         );

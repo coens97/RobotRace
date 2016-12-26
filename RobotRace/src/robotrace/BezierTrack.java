@@ -19,9 +19,12 @@ public class BezierTrack extends RaceTrack {
     
     @Override
     protected Vector getPoint(double t) {
-        t = t % 1;
-        return getCubicBezierPnt(t, controlPoints[0], controlPoints[1], controlPoints[2], controlPoints[3]);
-
+        t %= 1; // only allow input 0..1
+        int nrFragments = controlPoints.length / 4;
+        int fragment = (int)Math.floor(t * nrFragments)*4;
+        t *= nrFragments;
+        t %= 1;
+        return getCubicBezierPnt(t, controlPoints[fragment], controlPoints[fragment + 1], controlPoints[fragment + 2], controlPoints[fragment + 3]);
     }
 
     @Override
