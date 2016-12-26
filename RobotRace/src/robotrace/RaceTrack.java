@@ -29,20 +29,25 @@ abstract class RaceTrack {
     public void draw(GL2 gl, GLU glu, GLUT glut) {
         // render top part
         gl.glPushMatrix();
+        ShaderPrograms.trackShader.useProgram(gl);
+        Textures.brick.enable(gl);
+        Textures.brick.bind(gl);
         for(int lane = 0; lane < 4; lane++)
         {
             //gl.glBegin(GL_LINE_STRIP);	
             gl.glBegin(GL_TRIANGLE_STRIP);	
-
+            boolean tex = false;
             for(float i = 0; i <= 1.0f; i+= stepSize) {
                 Vector vector = getLanePoint(lane, i);
                 Vector tangent = getLaneTangent(lane, i);
                 Vector normal = tangent.cross(Vector.Z).normalized();
                 Vector vector1 = getLanePoint(lane, i).add(normal.scale(laneWidth/2));
                 Vector vector2 = getLanePoint(lane, i).add(normal.scale(-laneWidth/2));
+                gl.glTexCoord2d(0, tex?1:0);
                 gl.glVertex3d( vector2.x, vector2.y, vector2.z ); 
+                gl.glTexCoord2d(1, tex?1:0);
                 gl.glVertex3d( vector1.x, vector1.y, vector1.z ); 
-
+                tex = !tex;
             }
             gl.glEnd();
         }
@@ -81,6 +86,7 @@ abstract class RaceTrack {
 
         }
         gl.glEnd();
+        Textures.brick.disable(gl);
         gl.glPopMatrix();
     }
     

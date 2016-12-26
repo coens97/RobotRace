@@ -144,6 +144,14 @@ public class RobotRace extends Base {
 	    // Normalize normals.
         gl.glEnable(GL_NORMALIZE);
         
+        // Enable textures.
+        gl.glEnable(GL_TEXTURE_2D);
+        gl.glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+        gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+        gl.glBindTexture(GL_TEXTURE_2D, 0);
+        
 	// Try to load four textures, add more if you like in the Textures class         
         Textures.loadTextures();
         reportError("reading textures");
