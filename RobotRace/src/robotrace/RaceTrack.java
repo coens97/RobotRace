@@ -51,8 +51,13 @@ abstract class RaceTrack {
             }
             gl.glEnd();
         }
+        Textures.track.disable(gl);
         gl.glPopMatrix();
         //render inner side
+        //gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        //gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        Textures.brick.enable(gl);
+        Textures.brick.bind(gl);
         gl.glPushMatrix();
         //gl.glBegin(GL_LINE_STRIP);	
         gl.glColor3d(1, 1, 0);
@@ -63,7 +68,9 @@ abstract class RaceTrack {
             Vector tangent = getLaneTangent(0, i);
             Vector normal = tangent.cross(Vector.Z).normalized();
             Vector vector1 = getLanePoint(0, i).add(normal.scale(-laneWidth/2));
+            gl.glTexCoord2f(i * 20 % 1, 0);
             gl.glVertex3d( vector1.x, vector1.y, vector1.z ); 
+            gl.glTexCoord2f(i * 20 % 1, 1);
             gl.glVertex3d( vector1.x, vector1.y, -1 ); 
 
         }
@@ -81,13 +88,16 @@ abstract class RaceTrack {
             Vector tangent = getLaneTangent(3, i);
             Vector normal = tangent.cross(Vector.Z).normalized();
             Vector vector1 = getLanePoint(3, i).add(normal.scale(laneWidth/2));
+            gl.glTexCoord2f(i * 20 % 1, 0);
             gl.glVertex3d( vector1.x, vector1.y, vector1.z ); 
+            gl.glTexCoord2f(i * 20 % 1, 1);
             gl.glVertex3d( vector1.x, vector1.y, -1 ); 
 
         }
         gl.glEnd();
-        Textures.brick.disable(gl);
+        
         gl.glPopMatrix();
+        Textures.brick.disable(gl);
     }
     
     /**
