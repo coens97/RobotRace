@@ -114,7 +114,13 @@ public class RobotRace extends Base {
         float g = 3.5f;
         raceTracks[1] = new BezierTrack(
                 
-            new Vector[] {}
+            new Vector[] {
+                new Vector(10,10,1),
+                new Vector(10,5,1),
+                new Vector(12,5,1),
+                new Vector(15,2,0),
+                
+            }
        
         );
         
@@ -225,8 +231,8 @@ public class RobotRace extends Base {
         
         for (int i = 0; i < robots.length; i++) {
             float robotAnim = this.gs.tAnim + robots[i].extraDistance;
-            robots[i].position = this.raceTracks[gs.trackNr].getLanePoint(i, robotAnim/40).subtract(Vector.Z);
-            robots[i].direction = Vector.Z.cross(this.raceTracks[gs.trackNr].getLaneTangent(i, robotAnim/40));
+            robots[i].position = Vector.Z.subtract(raceTracks[gs.trackNr].getLanePoint(i, robotAnim/40));
+            robots[i].direction = raceTracks[gs.trackNr].getLaneTangent(i, robotAnim/40).cross(Vector.Z);
             robots[i].draw(gl, glu, glut, robotAnim);
         }
 

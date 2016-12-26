@@ -19,15 +19,15 @@ public class BezierTrack extends RaceTrack {
     
     @Override
     protected Vector getPoint(double t) {
-
-        return Vector.O;
+        t = t % 1;
+        return getCubicBezierPnt(t, controlPoints[0], controlPoints[1], controlPoints[2], controlPoints[3]);
 
     }
 
     @Override
     protected Vector getTangent(double t) {
-
-        return Vector.O;
+        t = t % 1;
+        return getCubicBezierTng(t, controlPoints[0], controlPoints[1], controlPoints[2], controlPoints[3]);
 
     }
     
