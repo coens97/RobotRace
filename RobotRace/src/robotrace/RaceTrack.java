@@ -12,7 +12,7 @@ abstract class RaceTrack {
     
     /** The width of one lane. The total width of the track is 4 * laneWidth. */
     private final static float laneWidth = 1.22f;
-    private final static float stepSize = 0.0125f;
+    private final static float stepSize = 0.02f;
     
     
     /**
@@ -30,8 +30,8 @@ abstract class RaceTrack {
         // render top part
         gl.glPushMatrix();
         ShaderPrograms.trackShader.useProgram(gl);
-        Textures.brick.enable(gl);
-        Textures.brick.bind(gl);
+        Textures.track.enable(gl);
+        Textures.track.bind(gl);
         for(int lane = 0; lane < 4; lane++)
         {
             //gl.glBegin(GL_LINE_STRIP);	
