@@ -122,13 +122,68 @@ public class RobotRace extends Base {
                 
                 new Vector(20,15,5),
                 new Vector(20,20,5),
-                new Vector(15,20,5),
-                new Vector(10,20,5),
+                new Vector(15,20,9),
+                new Vector(10,20,9),
                 
-                /*new Vector(10,20,5),
-                new Vector(5,20,5),
-                new Vector(15,20,5),
-                new Vector(10,20,5),*/
+                new Vector(10,20,9),
+                new Vector(5,20,9),
+                new Vector(5,15,13),
+                new Vector(5,10,13),
+                
+                new Vector(5,10,13),
+                new Vector(5,5,13),
+                new Vector(5,0,17),
+                new Vector(0,-5,17),
+                
+                new Vector(0,-5,17),
+                new Vector(-5,-10,17),
+                new Vector(-7,-12,16.5),
+                new Vector(-12,-12,16),
+                
+                new Vector(-12,-12,16),
+                new Vector(-17,-12,15.5),
+                new Vector(-19,-9,15),
+                new Vector(-19,-4,14.5),
+                
+                new Vector(-19,-4,14.5),
+                new Vector(-19,1,14),
+                new Vector(-17,3,13.5),
+                new Vector(-12,3,13),
+                
+                new Vector(-12,3,13),
+                new Vector(-7,3,12.5),
+                new Vector(-2,1,12),
+                new Vector(-2, -4, 11.5),
+                
+                new Vector(-2,-4,11.5),
+                new Vector(-2,-9,11),
+                new Vector(-4,-11,10.5),
+                new Vector(-9, -11, 10),
+                
+                new Vector(-9,-11,10),
+                new Vector(-14,-11,10.5),
+                new Vector(-16,-9,10),
+                new Vector(-16, -4,9.5),
+                
+                new Vector(-16,-4,9.5),
+                new Vector(-16, 1,9),
+                new Vector(-14, 3,8.5),
+                new Vector(-9, 3,8),
+                
+                new Vector(-9,3,8),
+                new Vector(-4, 3,7.5),
+                new Vector(-1, 3,3),
+                new Vector(4, 3,3),
+                
+                new Vector(4,3,3),
+                new Vector(9, 3,3),
+                new Vector(11, 1,1),
+                new Vector(11, -4,1),
+                
+                new Vector(11,-4,1),
+                new Vector(11, -9,1),
+                new Vector(20, -7,1),
+                new Vector(20, 0,1),
             }
        
         );

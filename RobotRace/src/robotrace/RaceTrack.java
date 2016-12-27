@@ -12,7 +12,7 @@ abstract class RaceTrack {
     
     /** The width of one lane. The total width of the track is 4 * laneWidth. */
     private final static float laneWidth = 1.22f;
-    private final static float stepSize = 0.02f;
+    private final static float stepSize = 0.005f;
     
     
     /**
