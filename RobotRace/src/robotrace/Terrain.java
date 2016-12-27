@@ -33,6 +33,18 @@ class Terrain {
             }
             gl.glEnd();
         }
+        gl.glPopMatrix();
+        // draw water
+        gl.glPushMatrix();
+        ShaderPrograms.defaultShader.useProgram(gl);
+        gl.glColor4d(0.5, 0.5, 0.5,0.5);
+        
+        gl.glBegin(GL_TRIANGLE_STRIP);	
+            gl.glVertex3f(start, start, 0 ); 
+            gl.glVertex3f(start, end, 0); 
+            gl.glVertex3f(end, start, 0 ); 
+            gl.glVertex3f(end, end, 0); 
+        gl.glEnd();
         
         gl.glPopMatrix();
     }
