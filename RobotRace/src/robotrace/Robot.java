@@ -51,7 +51,7 @@ class Robot {
     private float armLowerArmLenght = 0.2f;
     private float randomNumber;
     public float extraDistance = 0;
-    private float sprintSpeed = 0.01f;
+    private float sprintSpeed = 0.05f;
 
     /**
      * Constructs the robot with initial parameters.
