@@ -375,7 +375,7 @@ public class RobotRace extends Base {
      */
     public static void main(String args[]) {
         RobotRace robotRace = new RobotRace();
-        robotRace.FPS = 15; // 15 FPS :).. 15ms
+        robotRace.FPS = 15; // 15ms
         robotRace.run();
     }
 }
