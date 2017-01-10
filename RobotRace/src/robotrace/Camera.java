@@ -39,12 +39,12 @@ class Camera {
     private void setDefaultMode(GlobalState gs) {
         this.up = Vector.Z;
         this.center = gs.cnt;
-        double cameraX = gs.vDist * Math.sin(gs.theta) * Math.cos(gs.phi); 
-        double cameraY = gs.vDist * Math.cos(gs.theta) * Math.cos(gs.phi);       
-        double cameraZ = gs.vDist * Math.sin(gs.phi);     
+        double cameraX = this.center.x + gs.vDist * Math.cos(gs.theta) * Math.cos(gs.phi); 
+        double cameraY = this.center.y + gs.vDist * Math.sin(gs.theta) * Math.cos(gs.phi);       
+        double cameraZ = this.center.z + gs.vDist * Math.sin(gs.phi);     
 
         this.eye = new Vector(cameraX , cameraY, cameraZ);
-        this.eye.add(center);
+        //this.eye.add(center);
         
     }
 
