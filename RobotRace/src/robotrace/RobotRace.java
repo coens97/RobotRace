@@ -249,7 +249,7 @@ public class RobotRace extends Base {
         gl.glLoadIdentity();
         
         // Add light source
-        gl.glLightfv(GL_LIGHT0, GL_POSITION, new float[]{0f,0f,0f,1f}, 0);
+        gl.glLightfv(GL_LIGHT0, GL_POSITION, new float[]{0f,0f,0f,5f}, 0);
                
         // Update the view according to the camera mode and robot of interest.
         // For camera modes 1 to 4, determine which robot to focus on.

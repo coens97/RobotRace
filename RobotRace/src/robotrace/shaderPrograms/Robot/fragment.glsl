@@ -1,5 +1,5 @@
 //uniform bool ambient, diffuse, specular;
-varying vec3 N, P;
+varying vec3 N, P, LP;
 
 vec4 shading(vec3 P, vec3 N, gl_MaterialParameters mat) {
  vec4 result = vec4(0.0, 0.0, 0.0, 1.0); // opaque black
@@ -14,12 +14,12 @@ vec4 shading(vec3 P, vec3 N, gl_MaterialParameters mat) {
 
  
   //vec4 LP =  light.position;
-  vec3 L = normalize(vec3(0.0) - P); // vector towards light source
+  vec3 L = normalize(LP - P); // vector towards the light
   float cosTheta = max(0.0, dot(N, L)); // angle between the normal and the light source
   //if (diffuse) {
    result += mat.diffuse * light.diffuse * cosTheta; // sum the color of diffuse times the intensity
   //}
- 
+ return result;
   //if (specular) {
    vec3 E = vec3(0.0); // position of camera in View space
    vec3 V = normalize(E - P); // direction towards viewer
