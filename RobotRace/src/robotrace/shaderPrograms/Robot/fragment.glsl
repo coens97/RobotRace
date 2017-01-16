@@ -3,23 +3,21 @@ varying vec3 N, P, LP;
 
 vec4 shading(vec3 P, vec3 N, gl_MaterialParameters mat) {
  vec4 result = vec4(0.0, 0.0, 0.0, 1.0); // opaque black
- for(int i=0; i<1;i++){ // loop through the lights
-
-  gl_LightSourceParameters light = gl_LightSource[i];
+ 
+  gl_LightSourceParameters light = gl_LightSource[0];
 
   
   //if (ambient) {
    result += mat.ambient * light.ambient; // add ambient color to sum
   //}
 
- 
-  //vec4 LP =  light.position;
-  vec3 L = normalize(LP - P); // vector towards the light
+
+  vec3 L = normalize(light.position.xyz); // vector towards the light
   float cosTheta = max(0.0, dot(N, L)); // angle between the normal and the light source
   //if (diffuse) {
    result += mat.diffuse * light.diffuse * cosTheta; // sum the color of diffuse times the intensity
   //}
- return result;
+
   //if (specular) {
    vec3 E = vec3(0.0); // position of camera in View space
    vec3 V = normalize(E - P); // direction towards viewer
@@ -28,7 +26,6 @@ vec4 shading(vec3 P, vec3 N, gl_MaterialParameters mat) {
    float alpha = max(0.0, dot(reflection, V)); // alpha like the one in the image on page 28 shading.pdf
    result += mat.specular * light.specular * pow(alpha, mat.shininess);
   //}
- }
  return result;
 }
 

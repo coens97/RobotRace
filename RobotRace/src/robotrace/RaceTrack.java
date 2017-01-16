@@ -71,7 +71,7 @@ abstract class RaceTrack {
             gl.glTexCoord2f(i * 20 % 1, 0);
             gl.glVertex3d( vector1.x, vector1.y, vector1.z ); 
             gl.glTexCoord2f(i * 20 % 1, 1);
-            gl.glVertex3d( vector1.x, vector1.y, vector1.z-1 ); 
+            gl.glVertex3d( vector1.x, vector1.y, vector1.z-2 ); 
 
         }
         gl.glEnd();
@@ -91,7 +91,7 @@ abstract class RaceTrack {
             gl.glTexCoord2f(i * 20 % 1, 0);
             gl.glVertex3d( vector1.x, vector1.y, vector1.z ); 
             gl.glTexCoord2f(i * 20 % 1, 1);
-            gl.glVertex3d( vector1.x, vector1.y,vector1.z -1 ); 
+            gl.glVertex3d( vector1.x, vector1.y,vector1.z -2); 
 
         }
         gl.glEnd();
