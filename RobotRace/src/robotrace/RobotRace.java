@@ -310,6 +310,14 @@ public class RobotRace extends Base {
         terrain.draw(gl, glu, glut);
         reportError("terrain:");
         
+        /*
+        // draw tree
+        gl.glPushMatrix(); 
+        gl.glRotatef(-90, 0.0f, 1.0f, 0.0f);
+        gl.glColor3d(165, 42, 42);
+        drawTree();
+        gl.glPopMatrix();
+        */
         
     }
     
@@ -368,6 +376,37 @@ public class RobotRace extends Base {
         gl.glPopMatrix();
     }
     
+    public void drawTree() {
+        float cubeSize = 1f;
+        gl.glPushMatrix(); 
+        
+            //draw base of the tree
+            float coneLength = 1.5f;
+            float lineLength = 1.0f - (cubeSize + coneLength + coneLength);
+            float lineWith = 0.5f;
+
+            gl.glScaled(lineLength, lineWith, lineWith);
+            //gl.glRotatef(0, 0.0f, 1.0f, 0.0f);
+            gl.glTranslated(-0.5f, 0, -0.3f);
+            gl.glColor3d(0.5f, 0.35f, 0.05f);
+            //gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
+            glut.glutSolidCylinder(0.6f, 0.5f, 10, 8);
+        gl.glPopMatrix();
+        
+        gl.glPushMatrix();
+            //draw top of the tree
+            gl.glColor3d(0, 255, 0);
+            gl.glTranslated(-1 * (cubeSize + lineLength), 0, 0);
+            gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
+            glut.glutSolidCone(lineWith * 2, coneLength, 10, 4);
+        gl.glPopMatrix();
+        
+        gl.glPushMatrix();
+            gl.glTranslated(-1.5 * (cubeSize + lineLength), 0, 0);
+            gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
+            glut.glutSolidCone(lineWith * 2, coneLength, 10, 4);
+        gl.glPopMatrix();
+    }
     
     /**
      * Main program execution body, delegates to an instance of
