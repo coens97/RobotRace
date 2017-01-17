@@ -20,7 +20,7 @@ class Terrain {
     /**
      * Draws the terrain.
      */
-    public void draw(GL2 gl, GLU glu, GLUT glut) {
+    public void draw(GL2 gl, GLU glu, GLUT glut, float tAnim) {
         gl.glPushMatrix();
         ShaderPrograms.terrainShader.useProgram(gl);
         for(float x = start; x < end; x += step)
@@ -36,7 +36,9 @@ class Terrain {
         gl.glPopMatrix();
         // draw water
         gl.glPushMatrix();
-        ShaderPrograms.defaultShader.useProgram(gl);
+        
+        ShaderPrograms.waterShader.useProgram(gl);
+        ShaderPrograms.waterShader.setUniform(gl, "tAnim", tAnim);
         gl.glColor4d(0.5, 0.5, 0.5,0.5);
         
         gl.glBegin(GL_TRIANGLE_STRIP);	
@@ -47,6 +49,7 @@ class Terrain {
         gl.glEnd();
         
         gl.glPopMatrix();
+        ShaderPrograms.defaultShader.useProgram(gl);
     }
     
 }
