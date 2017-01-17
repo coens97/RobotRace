@@ -105,7 +105,7 @@ abstract class RaceTrack {
      * Use this method to find the position of a robot on the track.
      */
     public Vector getLanePoint(int lane, double t){
-        Vector tangent = getLaneTangent(lane, t);
+        Vector tangent = getLaneTangent(0, t);
         Vector normal = tangent.cross(Vector.Z).normalized();
         return getPoint(t).add(normal.scale(laneWidth * lane));
 
@@ -116,9 +116,12 @@ abstract class RaceTrack {
      * Use this method to find the orientation of a robot on the track.
      */
     public Vector getLaneTangent(int lane, double t){
-        
-        return getTangent(t);
-
+        if (lane == 0){ 
+            return getTangent(t);
+        }
+        else {// on other lanes tangent is changed
+            return getLanePoint(lane, t + 0.001).subtract(getLanePoint(lane, t));
+        }
     }
     
     
