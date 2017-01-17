@@ -257,7 +257,13 @@ public class RobotRace extends Base {
                
         // Update the view according to the camera mode and robot of interest.
         // For camera modes 1 to 4, determine which robot to focus on.
-        camera.update(gs, robots[0]);
+        int robotFocus = 0;
+        for (int i = 1; i < 4; i++) {
+            if (robots[robotFocus].extraDistance > robots[i].extraDistance) {
+                robotFocus = i;
+            }
+        }
+        camera.update(gs, robots[robotFocus]);
         glu.gluLookAt(camera.eye.x(),    camera.eye.y(),    camera.eye.z(),
                       camera.center.x(), camera.center.y(), camera.center.z(),
                       camera.up.x(),     camera.up.y(),     camera.up.z());
