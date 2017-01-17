@@ -83,22 +83,26 @@ public class RobotRace extends Base {
         
         // Initialize robot 0
         robots[0] = new Robot(Material.GOLD,
-               0, 0, 0 
+               0, 0, 0,
+                0.3f, 0.3f
         );
         
         // Initialize robot 1
         robots[1] = new Robot(Material.SILVER,
-              1, 0, 0
+              1, 0, 0,
+                0.3f, 0.5f
         );
         
         // Initialize robot 2
         robots[2] = new Robot(Material.WOOD,
-              2, 0, 0
+              2, 0, 0,
+                0.4f, 0.2f
         );
 
         // Initialize robot 3
         robots[3] = new Robot(Material.ORANGE,
-              3, 0, 0  
+              3, 0, 0  ,
+                0.2f, 0.2f
         );
         
         // Initialize the camera

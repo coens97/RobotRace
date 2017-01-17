@@ -57,12 +57,16 @@ class Robot {
      * Constructs the robot with initial parameters.
      */
     public Robot(Material material,
-       int x, int y, int z     
+       int x, int y, int z,
+       float _headHeight,
+       float _bodyFat
     ) {
         this.material = material;
         this.position = new Vector(x, y, z);
         Random r = new Random();
         randomNumber = 0.2f + r.nextFloat() * 0.5f;
+        this.headHeight = _headHeight;
+        this.bodyDepth = _bodyFat;
     }
     
     private void addSprintSpeed(float tAnim)
