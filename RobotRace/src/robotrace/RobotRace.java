@@ -340,16 +340,16 @@ public class RobotRace extends Base {
             gl.glColor3d(165, 42, 42);
             drawTree();
         gl.glPopMatrix();*/
-        drawTree(0, 5, 4, 1.3);
-        drawTree(0, -5, -4, 1.3);
-        drawTree(0, 15, 11, 1.6);
-        drawTree(0, -15, -11, 1.3);
-        drawTree(0, -14, 13, 1.4);
-        drawTree(0, 14, -13, 1.4);
-        drawTree(0, -17, 9, 1.1);
-        drawTree(0, 17, -9, 1.6);
-        drawTree(0, -8, 17, 1.2);
-        drawTree(0, 8, -17, 1.7);
+        drawTree(0, 5, 4, 1.3, 1.0);
+        drawTree(0, -5, -4, 1.3, 0.8);
+        drawTree(0, 15, 11, 1.6,0.9);
+        drawTree(0, -15, -11, 1.3, 0.8);
+        drawTree(0, -14, 13, 1.4, 0.8);
+        drawTree(0, 14, -13, 1.4, 0.7);
+        drawTree(0, -17, 9, 1.1, 0.9);
+        drawTree(0, 17, -9, 1.6, 0.8);
+        drawTree(0, -8, 17, 1.2, 0.5);
+        drawTree(0, 8, -17, 1.7, 0.9);
         
         
     }
@@ -409,7 +409,7 @@ public class RobotRace extends Base {
         gl.glPopMatrix();
     }
     
-    public void drawTree(int tx, int ty, int tz, double scale) {
+    public void drawTree(int tx, int ty, int tz, double scale, double w) {
         gl.glPushMatrix();
             gl.glRotatef(-90, 0.0f, 1.0f, 0.0f);
             gl.glTranslated(tx, ty, tz);
@@ -439,11 +439,19 @@ public class RobotRace extends Base {
                 gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
                 glut.glutSolidCone(lineWith * 2, coneLength, 10, 4);
             gl.glPopMatrix();
+            
+            gl.glPushMatrix();
+                //draw top of the tree
+                gl.glColor3d(0, 255, 0);
+                gl.glTranslated(-1 * (cubeSize*2 + lineLength), 0, 0);
+                gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
+                glut.glutSolidCone(lineWith * 2, coneLength, 10, 4);
+            gl.glPopMatrix();
         
             gl.glPushMatrix();
                 gl.glTranslated(-1.5 * (cubeSize + lineLength), 0, 0);
                 gl.glRotatef(90, 0.0f, 1.0f, 0.0f);
-                glut.glutSolidCone(lineWith * 2, coneLength, 10, 4);
+                glut.glutSolidCone(lineWith * 2 * w, coneLength, 10, 4);
             gl.glPopMatrix();
         gl.glPopMatrix();
     }
